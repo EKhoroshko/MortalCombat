@@ -1,11 +1,11 @@
 // task 0
-const Scorpion = {
+const scorpion = {
     name: 'Scorpion',
     hp: 100,
     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
     weapon: 'harpoon',
     attack: function () {
-        console.log(Scorpion.name +' ' + 'Fight...');
+        console.log(scorpion.name +' ' + 'Fight...');
     }
 };
 
@@ -70,7 +70,7 @@ function createPlayer(player, obj) {
     $arena.appendChild($box);
 }
 
-createPlayer('player1', Scorpion);
+createPlayer('player1', scorpion);
 createPlayer('player2', subzero);
 
 

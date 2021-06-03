@@ -5,7 +5,7 @@ const scorpion = {
     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
     weapon: 'harpoon',
     attack: function () {
-        console.log(scorpion.name +' ' + 'Fight...');
+        console.log(this.name +' ' + 'Fight...');
     }
 };
 
@@ -15,14 +15,13 @@ const subzero = {
     img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
     weapon: 'suriken',
     attack: function () {
-        console.log(subzero.name + ' ' + 'Fight...');
+        console.log(this.name + ' ' + 'Fight...');
     }
 };
 
 // task 1 + 2
-
+const $arena = document.querySelector('.arenas');
 /*function createPlayer(player,name, hp) {
-    const $arena = document.querySelector('.arenas');
     const $box = document.createElement('div');
         $box.classList.add(player);
     const $progres = document.createElement('div');
@@ -49,7 +48,6 @@ createPlayer('player2', 'SUB-ZERO', 80);*/
 // task 3
 
 function createPlayer(player, obj) {
-    const $arena = document.querySelector('.arenas');
     const $box = document.createElement('div');
     $box.classList.add(player);
     const $progres = document.createElement('div');

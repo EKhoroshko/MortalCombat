@@ -88,9 +88,7 @@ $arena.appendChild(createPlayer(player2));
             $playerlife.style.width = 0;
              $arena.appendChild(playerWin(player.name));
             $btn.disabled = true;
-        }
-       
-        
+        }  
     }
 
     function playerWin(name) {

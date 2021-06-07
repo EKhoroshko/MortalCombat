@@ -82,24 +82,43 @@ $arena.appendChild(createPlayer(player2));
 
     function changeHp(player) {
         const $playerlife = document.querySelector('.player'+ player.player +' .life');
-        player.hp -= Math.ceil(Math.random()*20);
+        player.hp -= getRandom(20);
         $playerlife.style.width = player.hp + '%';
         if (player.hp <= 0) {
+            player.hp = 0;
             $playerlife.style.width = 0;
-             $arena.appendChild(playerWin(player.name));
-            $btn.disabled = true;
         }  
     }
 
-    function playerWin(name) {
-        const $winnermsg = createElement('div', 'loseTitle');
-        $winnermsg.textContent = name + ' lose';
-        return $winnermsg;
+    function playerWins(name) {
+        const $losemsg = createElement('div', 'loseTitle');
+        if (name) {
+            $losemsg.textContent = name + ' win';
+        } else {
+            $losemsg.textContent = 'drow';
+        }
+        return $losemsg;
+    }
+
+    function getRandom(num) {
+        return Math.ceil(Math.random() * num);
     }
 
 $btn.addEventListener('click', function () {
     changeHp(player1);
     changeHp(player2);
+
+    if (player1.hp === 0 || player2.hp === 0) {
+        $btn.disabled = true;
+    }
+
+    if (player1.hp === 0 && player1.hp < player2.hp) {
+        $arena.appendChild(playerWins(player2.name));
+    } else if (player2.hp === 0 && player2.hp < player1.hp) {
+        $arena.appendChild(playerWins(player1.name));
+    } else if (player1.hp === 0 && player2.hp === 0) {
+        $arena.appendChild(playerWins());
+    }
 });
 
 });

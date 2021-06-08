@@ -10,8 +10,9 @@ const player1 = {
     attack: function () {
         console.log(this.name +' ' + 'Fight...');
     },
-    change: changeHp,
-    //elHP: elHP,
+    changeHp: changeHp,
+    elHP: elHP,
+    renderHP: renderHP,
 };
 
 const player2 = {
@@ -23,6 +24,8 @@ const player2 = {
     attack: function () {
         console.log(this.name + ' ' + 'Fight...');
     },
+    changeHp: changeHp,
+    elHP: elHP,
     renderHP: renderHP,
 };
 
@@ -65,17 +68,13 @@ function createElement(tag, className) {
     }
     }
 
-    /*function elHP() {
-        const $playerlife = document.querySelector('.player' + this.player + ' .life');
-        return $playerlife;
+    function elHP() {
+        return document.querySelector('.player' + this.player + ' .life');
     }
 
-    console.log(player1.elHP());
-    console.log(player1.elHP.call(player2));*/
-    
-    function renderHP() {
-        const $playerlife = document.querySelector('.player' + this.player + ' .life');
-        $playerlife.style.width = this.hp + '%';
+    function renderHP() { 
+        this.elHP().style.width = this.hp + '%';
+       
     }
     
     /*function changeHp(player) {
@@ -103,8 +102,8 @@ function createElement(tag, className) {
     }
 
     $btn.addEventListener('click', function () {
-        player1.change(getRandom(20));
-        player1.change.call(player2, (getRandom(20)));
+        player1.changeHp(getRandom(20));
+        player1.changeHp.call(player2, (getRandom(20)));
         player2.renderHP();
         player2.renderHP.call(player1);
 

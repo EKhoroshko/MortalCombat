@@ -117,9 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    $formFight.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const enemy = enemyAttack();
+    function playerAttack() {
         const attack = {};
 
         for (let item of $formFight) {
@@ -133,29 +131,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             item.checked = false;
         }
+        return attack;
+    }
 
-        if (attack.hit !== enemy.defence) {
-            player1.changeHp(attack.value);
-            player1.renderHP();
-        }
-        if (enemy.hit !== attack.defence) {
-            player2.changeHp(attack.value);
-            player2.renderHP();
-        }
-
-       /* function checkTach(player1, player2) {
-            if (player1.hit != player2.defence) {
-                player2.changeHp();
-                player2.renderHP();
-            } else if (player1.defence != player2.hit) {
-                player1.changeHp();
-                player1.renderHP();
-            }
-        }
-
-        //checkTach(player1, player2);
-       // console.log(checkTach(player1, player2));*/
-
+    function showResult() {
         if (player1.hp === 0 || player2.hp === 0) {
             $formFight.disabled = true;
             $arena.appendChild(createReloadButton());
@@ -168,6 +147,22 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (player1.hp === 0 && player2.hp === 0) {
             $arena.appendChild(playerWins());
         }
+    }
+
+    $formFight.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const enemy = enemyAttack();
+        const player = playerAttack();
+
+        if (player.defence !== enemy.hit) {
+            player1.changeHp(enemy.value);
+            player1.renderHP();
+        }
+        if (enemy.defence !== player.hit) {
+            player2.changeHp(player.value);
+            player2.renderHP();
+        }
+        showResult();
     });
 });
 

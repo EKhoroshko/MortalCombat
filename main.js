@@ -86,8 +86,10 @@ function playerWins(name) {
     const $losemsg = createElement('div', 'loseTitle');
     if (name) {
         $losemsg.textContent = name + ' win';
+     //   switchLog('end');
     } else {
         $losemsg.textContent = 'drow';
+    //    switchLog('draw');
     }
     return $losemsg;
 }
@@ -146,8 +148,6 @@ function showResult() {
         $arena.appendChild(playerWins(player1.name));
     } else if (player1.hp === 0 && player2.hp === 0) {
         $arena.appendChild(playerWins());
-        switchLog('draw', player2, player1);
-        //    generateLogs('draw', player2, player1);
     }
 }
 
@@ -159,16 +159,20 @@ function timeToFight() {
 
 function switchLog(type, player1, player2) {
     switch (type) {
-        /* case 'start':
+         case 'start':
             let text = logs[type].replace('[player1]', player1.name)
                 .replace('[player2]', player2.name).replace('[time]', timeToFight());
-             break;*/
-        case 'end':
-
-        case 'hit': case 'defence':
-            let text = logs[type][getRandom(type.length)].replace('[playerKick]', player1.name)
-                .replace('[playerDefence]', player2.name);
             generateLogs(text);
+             break;
+        case 'end':
+           /* let text1 = logs[type].replace('[playerWins]', this.name)
+                .replace('[playerLose]', this.name);
+            generateLogs(text1);
+            break;*/
+        case 'hit': case 'defence':
+            let text2 = logs[type][getRandom(type.length)].replace('[playerKick]', player1.name)
+                .replace('[playerDefence]', player2.name);
+            generateLogs(text2);
             break;
         case 'draw':
             text = logs[type][getRandom(type.length)];

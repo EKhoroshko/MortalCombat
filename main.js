@@ -151,7 +151,7 @@ function showResult() {
         switchLog('end', player1, player2);
     } else if (player1.hp === 0 && player2.hp === 0) {
         $arena.appendChild(playerWins());
-        switchLog('drow');
+        switchLog();
     }
 }
 
@@ -192,7 +192,7 @@ function switchLog(type, player1, player2, value,) {
                 .replace('[playerDefence]', player1.name);
             el = `<p>${timeToFight()} ${text}</p>`;
             break;
-        case 'draw':
+        default:
             text = logs[type][getRandom(type.length - 1)];
             el = `<p>${timeToFight()} ${text}</p>`;
             break;

@@ -141,6 +141,7 @@ function showResult() {
     if (player1.hp === 0 || player2.hp === 0) {
         $formFight.disabled = true;
         $arena.appendChild(createReloadButton());
+        
     }
 
     if (player1.hp === 0 && player1.hp < player2.hp) {
@@ -197,11 +198,13 @@ function switchLog(type, player1, player2, value,) {
     $chat.insertAdjacentHTML('afterbegin', el);
 }
 
+switchLog('start', player1, player2);
+
 $formFight.addEventListener('submit', function (e) {
     e.preventDefault();
     const enemy = enemyAttack();
     const player = playerAttack();
-
+    
     if (player.defence !== enemy.hit) {
         player1.changeHp(enemy.value);
         player1.renderHP();

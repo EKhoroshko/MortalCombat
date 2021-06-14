@@ -72,6 +72,7 @@ function changeHp(num) {
     if (this.hp <= 0) {
         this.hp = 0;
     }
+    return this.hp;
 }
 
 function elHP() {
@@ -157,38 +158,35 @@ function timeToFight() {
     return time;
 }
 
-function switchLog(type, player1, player2,) {
+function switchLog(type, player1, player2, value,) {
     let text = '';
+    let el = '';
     switch (type) {
          case 'start':
              text = logs[type].replace('[player1]', player1.name)
                 .replace('[player2]', player2.name).replace('[time]', timeToFight());
-            generateLogs(text);
+            el = `<p>${timeToFight()} ${text}</p>`;
              break;
         case 'end':
             text = logs[type][getRandom(type.length)].replace('[playerWins]', this.name)
                 .replace('[playerLose]', this.name);
-            generateLogs(text);
+            el = `<p>${timeToFight()} ${text}</p>`;
             break;
         case 'hit':
             text = logs[type][getRandom(type.length)].replace('[playerKick]', player1.name)
                 .replace('[playerDefence]', player2.name);
-            generateLogs(text);
+            el = `<p>${timeToFight()} ${text} ${- value}</p>`;
             break;
         case 'defence':
              text = logs[type][getRandom(type.length)].replace('[playerKick]', player2.name)
                 .replace('[playerDefence]', player1.name);
-            generateLogs(text);
+            el = `<p>${timeToFight()} ${text}</p>`;
             break;
         case 'draw':
             text = logs[type][getRandom(type.length)];
-            generateLogs(text);
+            el = `<p>${timeToFight()} ${text}</p>`;
             break;
     }
-}
-
-function generateLogs(text) {
-    const el = `<p>${timeToFight()} ${text}</p>`;
     $chat.insertAdjacentHTML('afterbegin', el);
 }
 
@@ -200,17 +198,16 @@ $formFight.addEventListener('submit', function (e) {
     if (player.defence !== enemy.hit) {
         player1.changeHp(enemy.value);
         player1.renderHP();
-        switchLog('hit', player2, player1);
-    
+        switchLog('hit', player2, player1, enemy.value);
+    } else {
+        switchLog('defence', player2, player1);
     }
 
     if (enemy.defence !== player.hit) {
         player2.changeHp(player.value);
         player2.renderHP();
-        switchLog('hit', player1, player2);
-    }
-
-    if (player.defence === enemy.hit || enemy.defence === player.hit) {
+        switchLog('hit', player1, player2, player.value);
+    } else {
         switchLog('defence', player1, player2);
     }
 

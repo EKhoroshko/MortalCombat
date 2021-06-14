@@ -183,7 +183,7 @@ function switchLog(type, player1, player2, value,) {
         case 'hit':
             text = logs[type][getRandom(type.length)].replace('[playerKick]', player1.name)
                 .replace('[playerDefence]', player2.name);
-            el = `<p>${timeToFight()} ${text} ${- value}</p>`;
+            el = `<p>${timeToFight()} ${text} ${- value} ${player1.hp && player2.hp+'/'+100}</p>`;
             break;
         case 'defence':
              text = logs[type][getRandom(type.length)].replace('[playerKick]', player2.name)

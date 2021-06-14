@@ -157,26 +157,33 @@ function timeToFight() {
     return time;
 }
 
-function switchLog(type, player1, player2) {
+function switchLog(type, player1, player2,) {
+    let text = '';
     switch (type) {
          case 'start':
-            let text = logs[type].replace('[player1]', player1.name)
+             text = logs[type].replace('[player1]', player1.name)
                 .replace('[player2]', player2.name).replace('[time]', timeToFight());
             generateLogs(text);
              break;
         case 'end':
-           /* let text1 = logs[type].replace('[playerWins]', this.name)
+            text = logs[type][getRandom(type.length)].replace('[playerWins]', this.name)
                 .replace('[playerLose]', this.name);
-            generateLogs(text1);
-            break;*/
-        case 'hit': case 'defence':
-            let text2 = logs[type][getRandom(type.length)].replace('[playerKick]', player1.name)
+            generateLogs(text);
+            break;
+        case 'hit':
+            text = logs[type][getRandom(type.length)].replace('[playerKick]', player1.name)
                 .replace('[playerDefence]', player2.name);
-            generateLogs(text2);
+            generateLogs(text);
+            break;
+        case 'defence':
+             text = logs[type][getRandom(type.length)].replace('[playerKick]', player2.name)
+                .replace('[playerDefence]', player1.name);
+            generateLogs(text);
             break;
         case 'draw':
             text = logs[type][getRandom(type.length)];
-            return generateLogs(text);
+            generateLogs(text);
+            break;
     }
 }
 
@@ -184,13 +191,6 @@ function generateLogs(text) {
     const el = `<p>${timeToFight()} ${text}</p>`;
     $chat.insertAdjacentHTML('afterbegin', el);
 }
-
-/*function generateLogs(type, player1, player2) {
-    let text = logs[type][getRandom(type.length)].replace('[playerKick]', player1.name)
-        .replace('[playerDefence]', player2.name);
-    const el = `<p>${timeToFight()} ${text}</p>`;
-    $chat.insertAdjacentHTML('afterbegin', el);
-}*/
 
 $formFight.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -201,19 +201,17 @@ $formFight.addEventListener('submit', function (e) {
         player1.changeHp(enemy.value);
         player1.renderHP();
         switchLog('hit', player2, player1);
-        //     generateLogs('hit', player2, player1);
+    
     }
 
     if (enemy.defence !== player.hit) {
         player2.changeHp(player.value);
         player2.renderHP();
         switchLog('hit', player1, player2);
-        //    generateLogs('hit', player2, player1);
     }
 
     if (player.defence === enemy.hit || enemy.defence === player.hit) {
         switchLog('defence', player1, player2);
-        //    generateLogs('defence', player1, player2);
     }
 
     showResult();

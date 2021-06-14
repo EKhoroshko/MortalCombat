@@ -178,22 +178,22 @@ function switchLog(type, player1, player2, value,) {
             el = `<p>${timeToFight()} ${text}</p>`;
              break;
         case 'end':
-            text = logs[type][getRandom(type.length)].replace('[playerWins]', player1.name)
+            text = logs[type][getRandom(type.length - 1)].replace('[playerWins]', player1.name)
                 .replace('[playerLose]', player2.name);
             el = `<p>${timeToFight()} ${text}</p>`;
             break;
         case 'hit':
-            text = logs[type][getRandom(type.length)].replace('[playerKick]', player1.name)
+            text = logs[type][getRandom(type.length - 1)].replace('[playerKick]', player1.name)
                 .replace('[playerDefence]', player2.name);
             el = `<p>${timeToFight()} ${text} ${- value} ${player1.hp && player2.hp+'/'+100}</p>`;
             break;
         case 'defence':
-             text = logs[type][getRandom(type.length)].replace('[playerKick]', player2.name)
+             text = logs[type][getRandom(type.length - 1)].replace('[playerKick]', player2.name)
                 .replace('[playerDefence]', player1.name);
             el = `<p>${timeToFight()} ${text}</p>`;
             break;
         case 'draw':
-            text = logs[type][getRandom(type.length)];
+            text = logs[type][getRandom(type.length - 1)];
             el = `<p>${timeToFight()} ${text}</p>`;
             break;
     }

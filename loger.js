@@ -56,12 +56,15 @@ function switchLog(type, player1, player2, value,) {
                 .replace('[playerDefence]', player1.name);
             el = `<p>${timeToFight()} ${text}</p>`;
             break;
-        default:
+        case 'draw':
             text = logs[type][getRandom(type.length - 1)];
             el = `<p>${timeToFight()} ${text}</p>`;
+            break;
+        default:
+            el = `Вы играете слишком долго, сделайте перерыв`;
             break;
     }
     $chat.insertAdjacentHTML('afterbegin', el);
 }
 
-export { playerWins, showResult, switchLog};
+export { playerWins, showResult, switchLog };

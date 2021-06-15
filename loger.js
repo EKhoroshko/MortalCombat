@@ -61,7 +61,7 @@ function switchLog(type, player1, player2, value,) {
             el = `<p>${timeToFight()} ${text}</p>`;
             break;
         default:
-            el = `Вы играете слишком долго, сделайте перерыв`;
+            el = `<p>Вы играете слишком долго, сделайте перерыв</p>`;
             break;
     }
     $chat.insertAdjacentHTML('afterbegin', el);

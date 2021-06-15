@@ -1,4 +1,4 @@
-import getRandom from './getRandom.js';
+import { getRandom } from './getRandom.js';
 import { $formFight} from './main.js';
 
 const HIT = {

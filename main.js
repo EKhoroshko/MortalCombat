@@ -1,11 +1,11 @@
 import { enemyAttack, playerAttack } from './dmg.js';
-import { createElement} from './createMark.js';
+import { createElement } from './createMark.js';
 import { changeHp, elHP, renderHP } from './render.js';
 import { showResult, switchLog } from './loger.js';
 
-export const $arena = document.querySelector('.arenas'),
-            $formFight = document.querySelector('.control'),
-            $chat = document.querySelector('.chat');
+export const $arena = document.querySelector('.arenas');
+export const $formFight = document.querySelector('.control');
+export const $chat = document.querySelector('.chat');
 
 export const player1 = {
     player: 1,
@@ -35,7 +35,7 @@ export const player2 = {
     renderHP,
 };
 
-function createPlayer(obj) {
+const createPlayer = (obj) => {
     const $box = createElement('div', 'player' + obj.player);
     const $progres = createElement('div', 'progressbar');
     const $life = createElement('div', 'life');
@@ -50,7 +50,7 @@ function createPlayer(obj) {
     $char.appendChild(picter);
     $box.append($progres, $char);
     return $box;
-}
+};
 
 $arena.appendChild(createPlayer(player1));
 $arena.appendChild(createPlayer(player2));

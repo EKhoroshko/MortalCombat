@@ -1,5 +1,5 @@
 
-function createReloadButton() {
+const createReloadButton = () => {
     const $wrapper = createElement('div', 'reloadWrap');
     const $btnReload = createElement('button', 'button');
     $btnReload.textContent = ' Restart';
@@ -8,14 +8,14 @@ function createReloadButton() {
         window.location.reload();
     });
     return $wrapper;
-}
+};
 
-function createElement(tag, className) {
+const createElement = (tag, className) => {
     const $tag = document.createElement(tag);
     if (className) {
         $tag.classList.add(className);
     }
     return $tag;
-}
+};
 
 export {createElement, createReloadButton};

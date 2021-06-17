@@ -1,59 +1,33 @@
 import { enemyAttack, playerAttack } from './dmg.js';
-import { createElement } from './createMark.js';
-import { changeHp, elHP, renderHP } from './render.js';
+import Player from './player.js';
 import { showResult, switchLog } from './loger.js';
+
 
 export const $arena = document.querySelector('.arenas');
 export const $formFight = document.querySelector('.control');
 export const $chat = document.querySelector('.chat');
 
-export const player1 = {
+export const player1 = new Player({
     player: 1,
     name: 'Scorpion',
     hp: 100,
     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
-    weapon: 'harpoon',
-    attack: function () {
-        console.log(this.name + ' ' + 'Fight...');
-    },
-    changeHp,
-    elHP,
-    renderHP,
-};
+    rootSelector: 'arenas',
+});
 
-export const player2 = {
+export const player2 = new Player({
     player: 2,
     name: 'Sub-Zero',
     hp: 100,
     img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
-    weapon: 'suriken',
-    attack: function () {
-        console.log(this.name + ' ' + 'Fight...');
-    },
-    changeHp,
-    elHP,
-    renderHP,
-};
+    rootSelector: 'arenas',
+});
 
-const createPlayer = (obj) => {
-    const $box = createElement('div', 'player' + obj.player);
-    const $progres = createElement('div', 'progressbar');
-    const $life = createElement('div', 'life');
-    const $pname = createElement('div', 'name');
-    const $char = createElement('div', 'character');
-    const picter = createElement('img');
-
-    $life.style.width = `${obj.hp}%`;
-    $pname.textContent = obj.name;
-    picter.src = obj.img;
-    $progres.append($life, $pname);
-    $char.appendChild(picter);
-    $box.append($progres, $char);
-    return $box;
-};
-
-$arena.appendChild(createPlayer(player1));
-$arena.appendChild(createPlayer(player2));
+function init() {
+    player1.createPlayer();
+    player2.createPlayer();
+}
+init();
 
 $formFight.addEventListener('submit', function (e) {
     e.preventDefault();

@@ -1,7 +1,7 @@
-import { createElement, createReloadButton } from './createMark.js';
-import timeToFight from './time.js';
+import { createElement, createReloadButton } from './utils/createMark.js';
+import timeToFight from './utils/time.js';
 import logs from './logs.js';
-import {getRandom} from './getRandom.js';
+import {getRandom} from './utils/getRandom.js';
 import { $arena, $formFight, $chat, player1, player2 } from './main.js';
 
 const playerWins = (name) => {

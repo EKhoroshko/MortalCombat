@@ -1,5 +1,5 @@
 import { createElement } from './utils/createMark.js';
-export default class Player {
+class Player {
     constructor(props) {
         this.player = props.player;
         this.name = props.name;
@@ -9,7 +9,11 @@ export default class Player {
         this.rootSelector = props.rootSelector;
     }
 
-    changeHp(num){ 
+    elHP(){
+        return document.querySelector(`.${this.selector} .life`);
+    }
+
+    changeHp(num){
         this.hp -= num;
         if (this.hp <= 0) {
             this.hp = 0;
@@ -17,12 +21,8 @@ export default class Player {
         return this.hp;
     }
 
-    elHP(){
-        return document.querySelector(`.${this.selector} .life`);
-    }
-
     renderHP(){
-        this.elHP().style.width = this.hp + '%';
+       return (this.elHP().style.width = this.hp + '%');
     }
 
     createPlayer(){
@@ -46,3 +46,24 @@ export default class Player {
     return $box;
 }
 }
+
+export const player1 = new Player({
+    player: 1,
+    name: 'Scorpion',
+    hp: 100,
+    img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
+    rootSelector: 'arenas',
+    selector: 'div',
+});
+
+export const player2 = new Player({
+    player: 2,
+    name: 'Sub-Zero',
+    hp: 100,
+    img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
+    rootSelector: 'arenas',
+    selector: 'div',
+});
+
+
+export { Player};

@@ -9,11 +9,11 @@ class Player {
         this.rootSelector = props.rootSelector;
     }
 
-    elHP(){
+    elHP() {
         return document.querySelector(`.${this.selector} .life`);
     }
 
-    changeHp(num){
+    changeHp(num) {
         this.hp -= num;
         if (this.hp <= 0) {
             this.hp = 0;
@@ -21,30 +21,30 @@ class Player {
         return this.hp;
     }
 
-    renderHP(){
-       return (this.elHP().style.width = this.hp + '%');
+    renderHP() {
+        return (this.elHP().style.width = this.hp + '%');
     }
 
-    createPlayer(){
-    const $box = createElement('div', this.selector);
-    const $progres = createElement('div', 'progressbar');
-    const $life = createElement('div', 'life');
-    const $pname = createElement('div', 'name');
-    const $char = createElement('div', 'character');
-    const picter = createElement('img');
+    createPlayer() {
+        const $box = createElement('div', this.selector);
+        const $progres = createElement('div', 'progressbar');
+        const $life = createElement('div', 'life');
+        const $pname = createElement('div', 'name');
+        const $char = createElement('div', 'character');
+        const picter = createElement('img');
 
-    $life.style.width = this.hp + '%';
-    $pname.textContent = this.name;
-    picter.src = this.img;
-    $progres.append($life, $pname);
-    $char.appendChild(picter);
-    $box.append($progres, $char);
-        
-    const $root = document.querySelector(`.${this.rootSelector}`);
-    $root.appendChild($box);
+        $life.style.width = this.hp + '%';
+        $pname.textContent = this.name;
+        picter.src = this.img;
+        $progres.append($life, $pname);
+        $char.appendChild(picter);
+        $box.append($progres, $char);
 
-    return $box;
-}
+        const $root = document.querySelector(`.${this.rootSelector}`);
+        $root.appendChild($box);
+
+        return $box;
+    }
 }
 
 export const player1 = new Player({
@@ -66,4 +66,4 @@ export const player2 = new Player({
 });
 
 
-export { Player};
+export { Player };

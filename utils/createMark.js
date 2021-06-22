@@ -18,4 +18,4 @@ const createElement = (tag, className) => {
     return $tag;
 };
 
-export {createElement, createReloadButton};
+export { createElement, createReloadButton };

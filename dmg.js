@@ -1,5 +1,5 @@
 import { getRandom } from './utils/getRandom.js';
- const $formFight = document.querySelector('.control');
+const $formFight = document.querySelector('.control');
 
 const HIT = {
     head: 30,
@@ -36,4 +36,4 @@ const playerAttack = () => {
     return attack;
 };
 
-export {enemyAttack, playerAttack};
+export { enemyAttack, playerAttack };

@@ -67,7 +67,7 @@ function showResult() {
         $arena.appendChild(playerWins(player2.name));
         switchLog('end', player2, player1);
     } else if (player2.hp === 0 && player2.hp < player1.hp) {
-       $arena.appendChild(playerWins(player1.name));
+        $arena.appendChild(playerWins(player1.name));
         switchLog('end', player1, player2);
     } else if (player1.hp === 0 && player2.hp === 0) {
         $arena.appendChild(playerWins());

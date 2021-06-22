@@ -1,10 +1,12 @@
-import { createElement, createReloadButton } from './createMark.js';
+import { createElement } from './createMark.js';
+import { getRandom } from './getRandom.js';
 import timeToFight from './time.js';
-import logs from './logs.js';
-import {getRandom} from './getRandom.js';
-import { $arena, $formFight, $chat, player1, player2 } from './main.js';
+import logs from '../logs.js';
+import { createReloadButton } from './createMark.js';
+import { player1, player2 } from "../player.js";
 
-const playerWins = (name) => {
+
+function playerWins(name) {
     const $losemsg = createElement('div', 'loseTitle');
     if (name) {
         $losemsg.textContent = name + ' win';
@@ -12,25 +14,10 @@ const playerWins = (name) => {
         $losemsg.textContent = 'drow';
     }
     return $losemsg;
-};
-
-function showResult() {
-    if (player1.hp === 0 || player2.hp === 0) {
-        $formFight.disabled = true;
-        $arena.appendChild(createReloadButton());
-    }
-
-    if (player1.hp === 0 && player1.hp < player2.hp) {
-        $arena.appendChild(playerWins(player2.name));
-        switchLog('end', player2, player1);
-    } else if (player2.hp === 0 && player2.hp < player1.hp) {
-        $arena.appendChild(playerWins(player1.name));
-        switchLog('end', player1, player2);
-    } else if (player1.hp === 0 && player2.hp === 0) {
-        $arena.appendChild(playerWins());
-        switchLog('draw');
-    }
 }
+
+const $chat = document.querySelector('.chat');
+
 
 function switchLog(type, player1, player2, value,) {
     let text = '';
@@ -67,4 +54,25 @@ function switchLog(type, player1, player2, value,) {
     $chat.insertAdjacentHTML('afterbegin', el);
 }
 
-export { playerWins, showResult, switchLog };
+
+function showResult() {
+    const $formFight = document.querySelector('.control');
+    const $arena = document.querySelector('.arenas');
+    if (player1.hp === 0 || player2.hp === 0) {
+        $formFight.disabled = true;
+        $arena.appendChild(createReloadButton());
+    }
+
+    if (player1.hp === 0 && player1.hp < player2.hp) {
+        $arena.appendChild(playerWins(player2.name));
+        switchLog('end', player2, player1);
+    } else if (player2.hp === 0 && player2.hp < player1.hp) {
+       $arena.appendChild(playerWins(player1.name));
+        switchLog('end', player1, player2);
+    } else if (player1.hp === 0 && player2.hp === 0) {
+        $arena.appendChild(playerWins());
+        switchLog('draw');
+    }
+}
+
+export { playerWins, switchLog, showResult };

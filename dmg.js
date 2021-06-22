@@ -1,5 +1,5 @@
-import { getRandom } from './getRandom.js';
-import { $formFight} from './main.js';
+import { getRandom } from './utils/getRandom.js';
+ const $formFight = document.querySelector('.control');
 
 const HIT = {
     head: 30,
@@ -9,7 +9,7 @@ const HIT = {
 
 const ATTACK = ['head', 'body', 'foot'];
 
-function enemyAttack() {
+const enemyAttack = () => {
     const hit = ATTACK[getRandom(3) - 1];
     const defence = ATTACK[getRandom(3) - 1];
     return {
@@ -17,9 +17,9 @@ function enemyAttack() {
         hit,
         defence,
     };
-}
+};
 
- function playerAttack() {
+const playerAttack = () => {
     const attack = {};
 
     for (let item of $formFight) {
@@ -34,6 +34,6 @@ function enemyAttack() {
         item.checked = false;
     }
     return attack;
-}
+};
 
 export {enemyAttack, playerAttack};

@@ -75,7 +75,7 @@ class Game {
         const $arena = document.querySelector('.arenas');
         if (this.player1.hp === 0 || this.player2.hp === 0) {
             $formFight.disabled = true;
-            $arena.appendChild(createReloadButton());
+            $arena.append(createReloadButton());
         }
 
         if (this.player1.hp === 0 && this.player1.hp < this.player2.hp) {

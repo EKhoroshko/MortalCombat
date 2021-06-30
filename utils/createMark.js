@@ -5,7 +5,7 @@ const createReloadButton = () => {
     $btnReload.textContent = ' Restart';
     $wrapper.appendChild($btnReload);
     $btnReload.addEventListener('click', () => {
-        window.location.reload();
+        window.location.pathname = './index.html';
     });
     return $wrapper;
 };

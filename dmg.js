@@ -36,4 +36,4 @@ const playerAttack = () => {
     return attack;
 };
 
-export { enemyAttack, playerAttack };
+export { enemyAttack, playerAttack, $formFight };

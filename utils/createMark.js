@@ -5,7 +5,7 @@ const createReloadButton = () => {
     $btnReload.textContent = ' Restart';
     $wrapper.appendChild($btnReload);
     $btnReload.addEventListener('click', () => {
-        window.location.pathname = '../index.html';
+        window.location.pathname = 'MortalCombat/index.html';
     });
 };
 
